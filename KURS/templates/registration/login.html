@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login_form</title>
+</head>
+<body>
+    {% block content %}
+        <main class="login-main container">
+            <form class="main-form-login" method="post">
+                {% csrf_token %}
+
+                <h2>Форма авторизации</h2>
+
+                <div class="label-input-container">
+                    <label class="form-label">Логин:</label>
+                    <input class="form-input" type="text" name="username" placeholder="Логин" required>
+                </div>
+
+                <div class="label-input-container">
+                    <label class="form-label">Пароль:</label>
+                    <input class="form-input" type="password" name="password" placeholder="Пароль" required>
+                </div>
+                <!-- {{ form.errors }} раскомментировать -->
+                <div class="container-links">
+                    <a class="reset-password-link" href="">Не можете войти?</a>
+                    <a class="login-link" href="{% url 'signup' %}">Нету аккаунта</a>
+                </div>
+                <button class="form-button" type="submit"> Авторизоваться </button>
+            </form>
+        </main>
+    {% endblock content %}
+</body>
+</html>

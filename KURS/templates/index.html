@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static '/css/reset.css' %}"/>
+    <link rel="stylesheet" href="{% static '/css/style.css' %}"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=008fded9-a376-4ffb-b403-598644d599bd&lang=ru_RU" type="text/javascript"></script>
+    <script type="text/javascript">
+            ymaps.ready(function () {
+                var myMap = new ymaps.Map('map', {
+                        center: [56.826588, 60.612029],
+                        zoom: 17
+                    }, {
+                        searchControlProvider: 'yandex#search'
+                    }), myPieChart = new ymaps.Placemark([
+                            56.826588, 60.612029
+                        ]);
+                    myMap.geoObjects
+                        .add(myPieChart)
+            });
+    </script>
+    <title>Студия звукозаписи Попов</title>
+</head>
+<body>
+    <header class="header" id="Main">
+        <div class="header-container container">
+            <a href="#" class="header-logo"><img src="{% static 'img/Лого в шапке.png' %}" alt="Logo" width="80px" height="60px"/></a>
+            <nav class="header-nav-container">
+                <ul class="header-nav">
+                    <li class="nav-item"><a href="#Main">Главная</a></li>
+                    <li class="nav-item"><a href="#About_Us">О&#160;нас</a></li>
+                    <li class="nav-item"><a href="#Price">Услуги</a></li>
+                    <li class="nav-item"><a href="#Contacts">Контакты</a></li>
+                </ul>
+            </nav>
+
+            {% if user.is_authenticated %}
+                <nav class="header-nav-container2">
+                    <ul class="header-nav2">
+                        <li class="nav-item item2"><a href="{% url 'profile' %}">{{ user.username }}</a></li>
+                        <li class="nav-item item2"><a href="{% url 'logout' %}">Выход</a></li>
+                    </ul>
+                </nav>
+            {% else %}
+                <nav class="header-nav-container2">
+                    <ul class="header-nav2">
+                        <li class="nav-item item2"><a href="{% url 'signup' %}">Регистрация</a></li>
+                        <li class="nav-item item2"><a href="{% url 'login' %}">Авторизация</a></li>
+                    </ul>
+                </nav>
+            {% endif %}
+        </div>
+
+        <div class="header-container-body container">
+            <div class="header-container-titlePlusText">
+                <h1 class="header-container-title">
+                    Пустая студия <br>
+                    не ждёт пустых людей
+                </h1>
+                <div class="header-container-text">
+                    Арендуй студию сейчас
+                </div>
+            </div>
+            <div class="header-container-button">
+                <a href="#" class="header-button">
+                    Забронировать
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="page">
+        <div class="main-container">
+            <div class="firstSection-main-container" id="About_Us">
+                <div class="About_Us">
+                    Наши преимущества
+                </div>
+                <div class="firstSection-group-container container">
+                    <div class="group-container">
+                        <div class="first-item"><img class="" src="{% static 'img/Левая колонка.png' %}" width="604px" height="531.72px" alt="First photo"></div>
+                        <div class="second-item"><img class="" src="{% static 'img/Левая колонка 2.png' %}" width="605.76px" height="531.26px" alt="Second photo"></div>
+                    </div>
+
+                    <div class="group-container-2">
+                        <div class="first-item"><img class="" src="{% static 'img/Правая колонка.png' %}" width="607px" height="531.72px" alt="Third photo"></div>
+                        <div class="second-item"><img class="" src="{% static 'img/Правая колонка 2.png' %}" width="607px" height="531.72px" alt="Fourd photo"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="secondSection-main-container" id="Price">
+                <div class="Price">
+                    Для реализации идей<br>
+                     нужны возможности
+                </div>
+
+                <div class="secondSection-container container">
+                    <div class="title-container">
+                        Наша студия предоставляет<br>
+                         возможности:
+                    </div>
+
+                    <div class="body-container">
+                        <div class="secondSection-item secondSection-first-item">
+                            <div class="item-title">
+                                Запись
+                            </div>
+                            <div class="item-body">
+                                Сделаем запись вашего голоса или
+                                музыкального инструмента.
+                            </div>
+                        </div>
+
+                        <div class="secondSection-item secondSection-second-item">
+                            <div class="item-title">
+                                Сведение
+                            </div>
+                            <div class="item-body">
+                                Под сведением подразумевается,
+                                обработка. Мы можем обработать
+                                как ваш вокал, так и группу
+                                инструментов для наилучшего звучания.
+                            </div>
+                        </div>
+
+                        <div class="secondSection-item secondSection-third-item">
+                            <div class="item-title">
+                                Аранжировка
+                            </div>
+                            <div class="item-body">
+                                Поможем вам со стилистикой песни,
+                                подберём инструменты, сделаем
+                                красивую структуру вашего трека.
+                            </div>
+                        </div>
+
+                        <div class="secondSection-item secondSection-fourth-item">
+                            <div class="item-title">
+                                Написание текста
+                            </div>
+                            <div class="item-body">
+                                В наши услуги так же входит в
+                                написании текста под песню. Наши
+                                специалисты смогут написать текст
+                                по вашим пожеланиям.
+                            </div>
+                        </div>
+
+                        <div class="secondSection-item secondSection-fifth-item">
+                            <div class="item-title">
+                                Аренда студии
+                            </div>
+                            <div class="item-body">
+                                Если у вас нет помещения, мы
+                                можем вам предоставить нашу
+                                студию.
+                            </div>
+                        </div>
+
+                        <div class="secondSection-item secondSection-sixth-item">
+                            <div class="item-title">
+                                Курсы
+                            </div>
+                            <div class="item-body">
+                                В нашей студии есть специалисты и
+                                музыканты, которые готовы вам помочь познать музыкальный мир.
+                                Вас научат играть на музыкальных
+                                инструментах. Если хотите научиться
+                                заниматься продюсированием музыки,
+                                наша команда поможет вам.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="thirdSection-main-container" id="Contacts">
+                <div class="Contacts">
+                    Контакты
+                </div>
+
+                <div class="Contacts-body">
+                    Почта: po128-ufimtsev@urtt.ru
+                    Номер телефона: +7 (961) 762 38-23
+                    Адрес: Улица Народной Воли, 63
+                </div>
+
+                <div id="map">
+
+                </div>
+            </div>
+
+
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container container">
+            <a href="#" class="footer-logo"><img src="{% static 'img/Лого в шапке.png' %}" alt="Logo" width="80px" height="60px"/></a>
+            <nav class="header-nav-container">
+                <ul class="header-nav">
+                    <li class="nav-item"><a href="#Main">Главная</a></li>
+                    <li class="nav-item"><a href="#About_Us">О&#160;нас</a></li>
+                    <li class="nav-item"><a href="#Price">Услуги</a></li>
+                    <li class="nav-item"><a href="#Contacts">Контакты</a></li>
+                </ul>
+            </nav>
+
+            <div class="footer-number">
+                <img src="{% static 'img/telephone2 1.png' %}" alt="Phone" style="margin-right: 7px;"/> +7 (961) 762 38-23
+            </div>
+        </div>
+
+        <div class="footer-container-2">
+            <ul class="footer-nav-socialLinks">
+                <li class="nav-link"><a href="https://vk.com"><img src="{% static 'img/Vk.png' %}" width="30" height="30"/></a></li>
+                <li class="nav-link"><a href="#https://facebook.com"><img src="{% static 'img/Face.png' %}" width="30" height="30"/></a></li>
+                <li class="nav-link"><a href="#https://instagram.com"><img src="{% static 'img/Inst.png' %}" width="30" height="30"/></a></li>
+            </ul>
+
+            <div class="footer-copyright-container"><p class="copyright-text">© 2023 Студия Звукозаписи Попов</p></div>
+        </div>
+    </footer>
+</body>
+</html>

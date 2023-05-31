@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration_form</title>
+</head>
+<body>
+    {% block content %}
+        <main class="sign-up-main container">
+            <form class="main-form-signup" method="post">
+                {% csrf_token %}
+
+                <h2>Форма регистрации</h2>
+
+                <div class="label-input-container">
+                    <label class="form-label">Логин:</label>
+                    <input class="form-input" type="text" name="username" placeholder="Логин" required>
+                </div>
+
+                <div class="label-input-container">
+                    <label class="form-label">Почта:</label>
+                    <input class="form-input" type="email" name="email" placeholder="Почта" required>
+                </div>
+
+                <div class="label-input-container">
+                    <label class="form-label">Номер телефона:</label>
+                    <input class="form-input" type="phone_number" name="phone_number" placeholder="Номер телефона" required>
+                </div>
+
+                <div class="label-input-container">
+                    <label class="form-label">Пароль:</label>
+                    <input class="form-input" type="password" name="password1" placeholder="Пароль" required>
+                </div>
+
+                <div class="label-input-container">
+                    <label class="form-label">Подтверждение пароля:</label>
+                    <input class="form-input" type="password" name="password2" placeholder="Подтверждение пароля" required>
+                </div>
+                <!-- {{ form.errors }} раскомментировать -->
+                <a class="sign-up-link" href="{% url 'login' %}">Уже есть аккаунт</a>
+                <button class="form-button" type="submit" name="submit">
+                    Зарегистрироваться
+                </button>
+            </form>
+        </main>
+    {% endblock content %}
+</body>
+</html>

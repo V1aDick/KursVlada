@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+</head>
+<body>
+    {% block content %}
+        <main class="container">
+            <h2>Профиль</h2>
+
+            <div class="profile-container">
+                {{ user.username }}
+                <a class="resetpassword-link" href="{% url 'password_reset' %}">Сменить пароль</a>
+            </div>
+        </main>
+    {% endblock content %}
+</body>
+</html>

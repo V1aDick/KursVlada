@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static '/css/reset.css' %}"/>
+    <link rel="stylesheet" href="{% static '/css/base.css' %}"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Title</title>
+</head>
+<body>
+    <header class="header" id="Main">
+        <div class="header-container container">
+            <a href="/" class="header-logo"><img src="{% static 'img/Лого в шапке.png' %}" alt="Logo" width="80px" height="60px"/></a>
+            <nav class="header-nav-container">
+                <ul class="header-nav">
+                    <li class="nav-item"><a href="/#Main">Главная</a></li>
+                    <li class="nav-item"><a href="/#About_Us">О&#160;нас</a></li>
+                    <li class="nav-item"><a href="/#Price">Услуги</a></li>
+                    <li class="nav-item"><a href="/#Contacts">Контакты</a></li>
+                </ul>
+            </nav>
+
+            {% if user.is_authenticated %}
+                <nav class="header-nav-container2">
+                    <ul class="header-nav2">
+                        <li class="nav-item item2"><a href="{% url 'profile' %}">{{ user.username }}</a></li>
+                        <li class="nav-item item2"><a href="{% url 'logout' %}">Выход</a></li>
+                    </ul>
+                </nav>
+            {% else %}
+                <nav class="header-nav-container2">
+                    <ul class="header-nav2">
+                        <li class="nav-item item2"><a href="{% url 'signup' %}">Регистрация</a></li>
+                        <li class="nav-item item2"><a href="{% url 'login' %}">Авторизация</a></li>
+                    </ul>
+                </nav>
+            {% endif %}
+        </div>
+    </header>
+
+    {% block content %}
+    {% endblock content %}
+
+    <footer class="footer">
+        <div class="footer-container container">
+            <a href="/" class="footer-logo"><img src="{% static 'img/Лого в шапке.png' %}" alt="Logo" width="80px" height="60px"/></a>
+            <nav class="header-nav-container">
+                <ul class="header-nav">
+                    <li class="nav-item"><a href="/#Main">Главная</a></li>
+                    <li class="nav-item"><a href="/#About_Us">О&#160;нас</a></li>
+                    <li class="nav-item"><a href="/#Price">Услуги</a></li>
+                    <li class="nav-item"><a href="/#Contacts">Контакты</a></li>
+                </ul>
+            </nav>
+
+            <div class="footer-number">
+                <img src="{% static 'img/telephone2 1.png' %}" alt="Phone" style="margin-right: 7px;"/> +7 (961) 762 38-23
+            </div>
+        </div>
+
+        <div class="footer-container-2">
+            <ul class="footer-nav-socialLinks">
+                <li class="nav-link"><a href="https://vk.com"><img src="{% static 'img/Vk.png' %}" width="30" height="30"/></a></li>
+                <li class="nav-link"><a href="#https://facebook.com"><img src="{% static 'img/Face.png' %}" width="30" height="30"/></a></li>
+                <li class="nav-link"><a href="#https://instagram.com"><img src="{% static 'img/Inst.png' %}" width="30" height="30"/></a></li>
+            </ul>
+
+            <div class="footer-copyright-container"><p class="copyright-text">© 2023 Студия Звукозаписи Попов</p></div>
+        </div>
+    </footer>
+</body>
+</html>
